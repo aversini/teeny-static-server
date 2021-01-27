@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "Arno Versini",
-  "description": "A command line server to serve static files",
+  "description": "A command line server to serve static files locally",
   "homepage": "https://github.com/aversini/teeny-static-server",
   "repository": {
     "type": "git",
