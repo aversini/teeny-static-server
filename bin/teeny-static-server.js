@@ -30,13 +30,17 @@ program
     "Port to listen on - Will try next available if already used",
     DEFAULT_PORT
   )
-  .option("-u, --unzipped", "Disable GZIP compression", false)
+  .option("-u, --no-gzip", "Disabled GZIP compression", false)
   .version(pkg.version);
 
 program.addHelpText(
   "after",
   `\nPath: the path to serve files from (default: current folder)`
 );
+
+program.configureHelp({
+  sortOptions: true,
+});
 
 program.parse(process.argv);
 const customCfg = program.opts();

@@ -2,11 +2,13 @@ module.exports = {
   port: 8080,
   cache: 0,
   cors: false,
-  unzipped: true,
+  gzip: true,
   logs: false,
   open: false,
   path: process.cwd(),
-  headers: {
-    "X-Powered-By": "Teeny Static Server",
-  },
+  headers: [
+    {
+      "X-Powered-By": "Teeny Static Server",
+    },
+  ],
 };
