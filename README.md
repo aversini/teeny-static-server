@@ -4,7 +4,7 @@
 
 ## Installation
 
-This command line utility can be installed globally or locally within your project. IT does make more sense to have it installed globally though, since it then can be use anywhere by simply starting it to server the files located in the current folder.
+This command line utility can be installed globally or locally within your project. It does make more sense to have it installed globally though, since it then can be use anywhere by simply starting it to serve the files located in the current folder.
 
 ```sh
 > npm install -g teeny-static-server
