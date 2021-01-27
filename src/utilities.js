@@ -54,6 +54,7 @@ const printHTTPLogs = (req) => {
   );
 };
 
+/* istanbul ignore next */
 const handleShutdown = (callback) => {
   let run = false;
   const onShutdown = () => {
@@ -67,6 +68,7 @@ const handleShutdown = (callback) => {
   process.on("exit", onShutdown);
 };
 
+/* istanbul ignore next */
 const startServer = async (config) => {
   const requestListener = async (req, res, err) => {
     if (config.headers) {
@@ -156,4 +158,6 @@ module.exports = {
   log,
   mergeConfigurations,
   startServer,
+  // private methods
+  printHTTPLogs,
 };
