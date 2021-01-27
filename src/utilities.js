@@ -9,6 +9,7 @@ const opn = require("opn");
 const { cyan, green, grey, red, yellow } = require("kleur");
 
 const ONE_SECOND = 1000;
+const FORCE_SERVER_CLOSE_DELAY = 3000;
 
 const log = (...args) => {
   // eslint-disable-next-line no-console
@@ -68,6 +69,13 @@ const handleShutdown = (callback) => {
 
 const startServer = async (config) => {
   const requestListener = async (req, res, err) => {
+    if (config.headers) {
+      config.headers.forEach((header) => {
+        const key = Object.keys(header)[0];
+        const value = Object.values(header)[0];
+        res.setHeader(key, value);
+      });
+    }
     if (config.cors) {
       res.setHeader("Access-Control-Allow-Origin", "*");
     }
@@ -110,7 +118,13 @@ const startServer = async (config) => {
     process.exit(1);
   }
   server.listen(config.port, "0.0.0.0", async () => {
-    handleShutdown(() => server.close());
+    handleShutdown(() => {
+      setTimeout(() => {
+        log("Force-closing all open sockets...");
+        process.exit(0);
+      }, FORCE_SERVER_CLOSE_DELAY);
+      server.close();
+    });
 
     const url = `http://localhost:${config.port}`;
     const msg = `Teeny Static Server is up and running.\nURL is now available here:\n${cyan(
