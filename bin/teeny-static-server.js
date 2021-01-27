@@ -5,7 +5,6 @@ const fs = require("fs-extra");
 const { program } = require("commander");
 const {
   displayErrorMessages,
-  log,
   mergeConfigurations,
 } = require("../src/utilities");
 const httpServer = require("../src/http-server");
@@ -15,7 +14,7 @@ const pkg = require(path.join(__dirname, "../package.json"));
 const DEFAULT_PORT = 8080;
 
 program
-  .version(pkg.version, "-v, --version", "output the current version")
+  .version(pkg.version, "-v, --version", "Output the current version")
   .arguments("[path]")
   .option("-c, --cache <number>", "Time in seconds for caching files", 0)
   .option(
@@ -24,14 +23,14 @@ program
     false
   )
   .option("-o, --open", "Open in your default browser", false)
-  .option("-l, --logs", "Print HTTP requests", false)
+  .option("-l, --logs", "Log HTTP requests at the prompt", false)
   .option(
     "-p, --port <n>",
     "Port to listen on - Will try next available if already used",
     DEFAULT_PORT
   )
-  .option("-u, --no-gzip", "Disabled GZIP compression", false)
-  .version(pkg.version);
+  .option("-u, --no-gzip", "Disable GZIP compression (default: false)", false)
+  .helpOption("-h, --help", "Display help instructions");
 
 program.addHelpText(
   "after",
