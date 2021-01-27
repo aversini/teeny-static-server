@@ -8,7 +8,6 @@ const boxen = require("boxen");
 const opn = require("opn");
 const { cyan, green, grey, red, yellow } = require("kleur");
 
-const GRACEFUL_SERVER_CLOSE_DELAY = 3000;
 const ONE_SECOND = 1000;
 
 const log = (...args) => {
@@ -111,13 +110,7 @@ const startServer = async (config) => {
     process.exit(1);
   }
   server.listen(config.port, "0.0.0.0", async () => {
-    handleShutdown(() => {
-      setTimeout(() => {
-        log("Force-closing all open sockets...");
-        process.exit(0);
-      }, GRACEFUL_SERVER_CLOSE_DELAY);
-      server.close();
-    });
+    handleShutdown(() => server.close());
 
     const url = `http://localhost:${config.port}`;
     const msg = `Teeny Static Server is up and running.\nURL is now available here:\n${cyan(
