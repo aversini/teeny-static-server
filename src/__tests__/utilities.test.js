@@ -182,21 +182,19 @@ describe("when testing for utilities with logging side-effects", () => {
     expect(mockExit).not.toHaveBeenCalled();
   });
 
-  it("", async () => {
-    const DateReal = global.Date;
-    const mockDate = new Date("2020-11-01T00:00:00.000Z");
-
-    const spyDate = jest.spyOn(global, "Date").mockImplementation((...args) => {
-      if (args.length) {
-        return new DateReal(...args);
-      }
-      return mockDate;
-    });
+  it("should display HTTP logs with date and time", async () => {
+    const spyDate = jest
+      .spyOn(Date.prototype, "toDateString")
+      .mockImplementation(() => "Sat Oct 31 2020");
+    const spyLocaleTime = jest
+      .spyOn(Date.prototype, "toLocaleTimeString")
+      .mockImplementation(() => "5:00:00 PM");
 
     printHTTPLogs({ method: "GET", url: "/" });
     expect(mockLog).toHaveBeenCalledWith(
       "[ Sat Oct 31 2020 5:00:00 PM ] GET /"
     );
     spyDate.mockRestore();
+    spyLocaleTime.mockRestore();
   });
 });
