@@ -1,3 +1,12 @@
+## [0.0.4](https://github.com/aversini/teeny-static-server/compare/v0.0.3...v0.0.4) (2021-01-28)
+
+
+### Bug Fixes
+
+* better shutdown process ([8b05996](https://github.com/aversini/teeny-static-server/commit/8b059968746f19ed12461d10535c2a0f55ccd053))
+
+
+
 ## 0.0.3 (2021-01-28)
 
 
