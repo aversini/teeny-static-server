@@ -5,7 +5,7 @@ const handler = require("serve-handler");
 const http = require("http");
 const portfinder = require("portfinder");
 const boxen = require("boxen");
-const opn = require("opn");
+const open = require("open");
 const ora = require("ora");
 const { cyan, green, grey, red, yellow } = require("kleur");
 
@@ -138,7 +138,7 @@ const startServer = async (config) => {
     );
 
     if (config.open) {
-      opn(url, {
+      await open(url, {
         url: true,
         wait: false,
       });
