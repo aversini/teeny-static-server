@@ -6,6 +6,7 @@ const http = require("http");
 const portfinder = require("portfinder");
 const boxen = require("boxen");
 const opn = require("opn");
+const ora = require("ora");
 const { cyan, green, grey, red, yellow } = require("kleur");
 
 const ONE_SECOND = 1000;
@@ -114,8 +115,10 @@ const startServer = async (config) => {
   }
   server.listen(config.port, "0.0.0.0", async () => {
     handleShutdown(() => {
+      log();
+      const spinner = ora("Shutting down. Please wait...").start();
       setTimeout(() => {
-        log("Force-closing all open sockets...");
+        spinner.succeed("Server is down... Bye!");
         process.exit(0);
       }, FORCE_SERVER_CLOSE_DELAY);
       server.close();
