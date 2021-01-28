@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "bump": "bump-and-release -t bump",
+    "codecov": "codecov",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "lint:fix": "eslint --fix --color \"./src/**/*.js\" \"./bin/**/*.js\"",
     "lint": "eslint --color \"./src/**/*.js\" \"./bin/**/*.js\"",
@@ -25,6 +26,7 @@
     "prettier:all": "npm-run-all --serial prettier:fix lint:fix",
     "release": "bump-and-release -t release",
     "test": "cross-env NODE_ENV=\"test\" jest",
+    "test:ci": "npm-run-all test:coverage codecov ",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch"
   },
@@ -34,6 +36,7 @@
     "@testing-library/jest-dom": "5.11.9",
     "babel-eslint": "^10.1.0",
     "bump-and-release": "0.7.0",
+    "codecov": "3.7.2",
     "conventional-changelog-cli": "^2.1.1",
     "cross-env": "^7.0.3",
     "eslint-config-prettier": "^7.2.0",

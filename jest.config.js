@@ -28,6 +28,14 @@ module.exports = {
   ],
 
   /**
+   * The directory where Jest should output its coverage files.
+   * @type {String}
+   *
+   * Default undefined
+   */
+  coverageDirectory: "coverage",
+
+  /**
    * This will be used to configure minimum threshold enforcement
    * for coverage results. Thresholds can be specified as global,
    * as a glob, and as a directory or file path. If thresholds
