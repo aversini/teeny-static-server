@@ -1,3 +1,13 @@
+# [1.0.0](https://github.com/aversini/teeny-static-server/compare/v0.0.5...v1.0.0) (2021-01-28)
+
+
+### Bug Fixes
+
+* algo to detect if port is not available is not working at all ([f8e8a04](https://github.com/aversini/teeny-static-server/commit/f8e8a046e5c9ae8332424eae79dafd62b961660c))
+* public path was not being rendered correctly ([2c5d7cd](https://github.com/aversini/teeny-static-server/commit/2c5d7cd581ad3469e7440e7e856fd9422d092e11))
+
+
+
 ## [0.0.5](https://github.com/aversini/teeny-static-server/compare/v0.0.4...v0.0.5) (2021-01-28)
 
 
