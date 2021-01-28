@@ -17,13 +17,13 @@
     "src/*.js"
   ],
   "scripts": {
-    "bump": "node ./bin/bump-and-release.js -t bump",
+    "bump": "bump-and-release -t bump",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "lint:fix": "eslint --fix --color \"./src/**/*.js\" \"./bin/**/*.js\"",
     "lint": "eslint --color \"./src/**/*.js\" \"./bin/**/*.js\"",
     "prettier:fix": "prettier --loglevel error --write \"{src/**/*.js,bin/**/*.js}\"",
     "prettier:all": "npm-run-all --serial prettier:fix lint:fix",
-    "release": "node ./bin/bump-and-release.js -t release",
+    "release": "bump-and-release -t release",
     "test": "cross-env NODE_ENV=\"test\" jest",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch"
@@ -33,6 +33,7 @@
     "@commitlint/cli": "^11.0.0",
     "@testing-library/jest-dom": "5.11.9",
     "babel-eslint": "^10.1.0",
+    "bump-and-release": "0.6.0",
     "conventional-changelog-cli": "^2.1.1",
     "cross-env": "^7.0.3",
     "eslint-config-prettier": "^7.2.0",
