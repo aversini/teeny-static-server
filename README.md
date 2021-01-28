@@ -1,5 +1,9 @@
 # Teeny Static Server
 
+[![npm version](https://badge.fury.io/js/teeny-static-server.svg)](https://badge.fury.io/js/teeny-static-server)
+<a href="https://david-dm.org/aversini/teeny-static-server"><img src="https://david-dm.org/aversini/teeny-static-server.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/aversini/teeny-static-server/?type=dev"><img src="https://david-dm.org/aversini/teeny-static-server/dev-status.svg" alt="devDependency Status"></a> [![Build Status](https://travis-ci.com/aversini/teeny-static-server.svg?branch=master)](https://travis-ci.com/aversini/teeny-static-server)
+
 > Teeny Static Server is a simple, zero-configuration, command line HTTP server to serve static files locally.
 
 ## Installation
