@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/aversini/teeny-static-server/compare/v0.0.4...v0.0.5) (2021-01-28)
+
+
+### Bug Fixes
+
+* replace deprecated opn with open ([e962fa8](https://github.com/aversini/teeny-static-server/commit/e962fa8606fdda46df9ebbf44c618ff2bc309086))
+
+
+
 ## [0.0.4](https://github.com/aversini/teeny-static-server/compare/v0.0.3...v0.0.4) (2021-01-28)
 
 
