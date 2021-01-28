@@ -25,14 +25,7 @@ const upperFirst = (str) => str[0].toUpperCase() + str.slice(1);
  *
  */
 const mergeConfigurations = (defaultConfig, customConfig) =>
-  _.mergeWith(defaultConfig, customConfig, (def, cust, key) => {
-    if (key === "nextPossible") {
-      return _.orderBy(
-        _.values(_.merge(_.keyBy(def, "type"), _.keyBy(cust, "type"))),
-        ["pos"]
-      );
-    }
-  });
+  _.merge(defaultConfig, customConfig);
 
 const displayErrorMessages = (errorMsg) => {
   if (errorMsg && errorMsg.length) {

@@ -21,7 +21,11 @@ module.exports = {
    *
    * Default undefined
    */
-  collectCoverageFrom: ["src/**/*.js", "!src/__tests__/**/*.*"],
+  collectCoverageFrom: [
+    "src/**/*.js",
+    "!src/__tests__/**/*.*",
+    "!src/http-server.js",
+  ],
 
   /**
    * This will be used to configure minimum threshold enforcement

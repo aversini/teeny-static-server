@@ -117,25 +117,10 @@ describe("when testing for configuration merging wtih no logging side-effects", 
   });
 
   it("should return a new configuration with custom nexPossible", async () => {
-    const configA = {
-      bump: {
-        nextPossible: [
-          {
-            type: "minor",
-            default: false,
-          },
-        ],
-      },
-    };
+    const configA = require("../defaults");
     const configB = {
-      bump: {
-        nextPossible: [
-          {
-            type: "minor",
-            default: true,
-          },
-        ],
-      },
+      port: 8081,
+      gzip: false,
     };
     expect(deepEqual(configA, configB)).toBe(false);
     /**
@@ -145,13 +130,16 @@ describe("when testing for configuration merging wtih no logging side-effects", 
      */
     const res = mergeConfigurations(configA, configB);
 
+    // eslint-disable-next-line no-magic-numbers
+    expect(res.port).toBe(8081);
+    expect(res.cache).toBe(0);
+    expect(res.cors).toBe(false);
+    expect(res.gzip).toBe(false);
+    expect(res.logs).toBe(false);
+    expect(res.open).toBe(false);
+    expect(res.path).toBe(process.cwd());
     expect(
-      deepEqual(res.bump.nextPossible, [
-        {
-          type: "minor",
-          default: true,
-        },
-      ])
+      deepEqual(res.headers, [{ "X-Powered-By": "Teeny Static Server" }])
     ).toBe(true);
   });
 });
