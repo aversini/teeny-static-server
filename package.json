@@ -1,6 +1,6 @@
 {
   "name": "teeny-static-server",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Arno Versini",
   "description": "A command line server to serve static files locally",
