@@ -102,12 +102,14 @@ const startServer = async (config) => {
     process.exit(1);
   });
 
-  let port;
+  let port, portMessage;
   try {
-    port = await portfinder.getPortPromise({ port: config.port });
+    port = await portfinder.getPortPromise({ port: Number(config.port) });
     if (port !== config.port) {
-      log(yellow(`Port ${config.port} is not available...`));
-      log(yellow(`Using next available instead: ${port}`));
+      portMessage = `\n\n${yellow(
+        `Warning: port ${config.port} was not available!`
+      )}`;
+      config.port = port;
     }
   } catch (e) {
     log(e);
@@ -127,7 +129,7 @@ const startServer = async (config) => {
     const url = `http://localhost:${config.port}`;
     const msg = `Teeny Static Server is up and running.\nURL is now available here:\n${cyan(
       url
-    )}\nHit CTRL+C to stop the server.`;
+    )}\nHit CTRL+C to stop the server.${portMessage}`;
     log();
     log(
       boxen(msg, {
