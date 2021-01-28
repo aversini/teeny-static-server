@@ -92,7 +92,9 @@ const startServer = async (config) => {
     if (config.logs) {
       printHTTPLogs(req, res, err);
     }
-    return handler(req, res, config);
+    return handler(req, res, {
+      public: config.path,
+    });
   };
 
   const server = http.createServer(requestListener);
