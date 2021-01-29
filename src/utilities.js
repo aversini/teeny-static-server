@@ -104,7 +104,8 @@ const startServer = async (config) => {
     process.exit(1);
   });
 
-  let port, portMessage;
+  let port,
+    portMessage = "";
   try {
     port = await portfinder.getPortPromise({ port: Number(config.port) });
     if (port !== config.port) {
