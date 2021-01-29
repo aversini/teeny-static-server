@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/aversini/teeny-static-server/compare/v1.0.0...v1.0.1) (2021-01-29)
+
+
+### Bug Fixes
+
+* if the port is available, do not display error message (undefined) ([31e3c43](https://github.com/aversini/teeny-static-server/commit/31e3c4379cecbb6fe0e36baefc0bb33d78d51d45))
+
+
+
 # [1.0.0](https://github.com/aversini/teeny-static-server/compare/v0.0.5...v1.0.0) (2021-01-28)
 
 
