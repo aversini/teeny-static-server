@@ -1,6 +1,6 @@
 const {
   displayErrorMessages,
-  log,
+  logger,
   mergeConfigurations,
   printHTTPLogs,
   upperFirst,
@@ -8,7 +8,14 @@ const {
 
 const deepEqual = require("./helpers/deepEqual");
 
-let mockExit, spyExit, mockLog, spyLog;
+let mockLog,
+  mockLogError,
+  mockLogWarning,
+  spyExit,
+  spyLog,
+  spyLogError,
+  spyLogWarning,
+  mockExit;
 
 describe("when testing for individual utilities wtih no logging side-effects", () => {
   it("should convert the first letter of a sentence to uppercase", async () => {
@@ -153,26 +160,35 @@ describe("when testing for configuration merging wtih no logging side-effects", 
 describe("when testing for utilities with logging side-effects", () => {
   beforeEach(() => {
     mockExit = jest.fn();
-    spyExit = jest.spyOn(process, "exit").mockImplementation(mockExit);
     mockLog = jest.fn();
+    mockLogError = jest.fn();
+    mockLogWarning = jest.fn();
+
+    spyExit = jest.spyOn(process, "exit").mockImplementation(mockExit);
     spyLog = jest.spyOn(console, "log").mockImplementation(mockLog);
+    spyLogError = jest.spyOn(console, "error").mockImplementation(mockLogError);
+    spyLogWarning = jest
+      .spyOn(console, "warn")
+      .mockImplementation(mockLogWarning);
   });
   afterEach(() => {
     spyExit.mockRestore();
     spyLog.mockRestore();
+    spyLogError.mockRestore();
+    spyLogWarning.mockRestore();
   });
 
   it("should log a simple message", async () => {
-    log("Hello World");
+    logger.log("Hello World");
     expect(mockLog).toHaveBeenCalledWith("Hello World");
-    log();
-    expect(mockLog).toHaveBeenCalledWith();
+    logger.log();
+    expect(mockLog).toHaveBeenCalledWith("");
   });
 
   it("should display the proper error messages and exit with 0", async () => {
     displayErrorMessages(["message one", "message two"]);
-    expect(mockLog).toHaveBeenCalledWith("message one");
-    expect(mockLog).toHaveBeenCalledWith("message two");
+    expect(mockLogError).toHaveBeenCalledWith("message one");
+    expect(mockLogError).toHaveBeenCalledWith("message two");
     expect(mockExit).toHaveBeenCalledWith(0);
   });
 

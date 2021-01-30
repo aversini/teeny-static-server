@@ -2,7 +2,6 @@
 
 const path = require("path");
 const fs = require("fs-extra");
-// const { program } = require("commander");
 const commander = require("commander");
 const program = new commander.Command();
 const {

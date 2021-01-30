@@ -7,15 +7,14 @@ const portfinder = require("portfinder");
 const boxen = require("boxen");
 const open = require("open");
 const ora = require("ora");
-const { cyan, green, grey, red, yellow } = require("kleur");
+const { cyan, green, grey, yellow } = require("kleur");
+const TeenyLogger = require("teeny-logger");
+const logger = new TeenyLogger({
+  boring: process.env.NODE_ENV === "test",
+});
 
 const ONE_SECOND = 1000;
 const FORCE_SERVER_CLOSE_DELAY = 3000;
-
-const log = (...args) => {
-  // eslint-disable-next-line no-console
-  console.log(...args);
-};
 
 const upperFirst = (str) => str[0].toUpperCase() + str.slice(1);
 
@@ -30,18 +29,18 @@ const mergeConfigurations = (defaultConfig, customConfig) =>
 
 const displayErrorMessages = (errorMsg) => {
   if (errorMsg && errorMsg.length) {
-    log();
+    logger.log();
     errorMsg.forEach(function (msg) {
-      log(red(msg));
+      logger.error(msg);
     });
-    log();
+    logger.log();
     process.exit(0);
   }
 };
 
 const printHTTPLogs = (req) => {
   const now = new Date();
-  log(
+  logger.log(
     `${grey("[ ")}${grey(now.toDateString())} ${grey(
       now.toLocaleTimeString()
     )}${grey(" ]")} ${green(req.method)} ${cyan(req.url)}`
@@ -100,7 +99,7 @@ const startServer = async (config) => {
   const server = http.createServer(requestListener);
 
   server.on("error", (err) => {
-    log(err);
+    logger.error(err);
     process.exit(1);
   });
 
@@ -115,12 +114,12 @@ const startServer = async (config) => {
       config.port = port;
     }
   } catch (e) {
-    log(e);
+    logger.error(e);
     process.exit(1);
   }
   server.listen(config.port, "0.0.0.0", async () => {
     handleShutdown(() => {
-      log();
+      logger.log();
       const spinner = ora("Shutting down. Please wait...").start();
       setTimeout(() => {
         spinner.succeed("Server is down... Bye!");
@@ -133,8 +132,8 @@ const startServer = async (config) => {
     const msg = `Teeny Static Server is up and running.\nURL is now available here:\n${cyan(
       url
     )}\nHit CTRL+C to stop the server.${portMessage}`;
-    log();
-    log(
+    logger.log();
+    logger.log(
       boxen(msg, {
         padding: 1,
         align: "center",
@@ -156,7 +155,7 @@ module.exports = {
   upperFirst,
   displayErrorMessages,
   handleShutdown,
-  log,
+  logger,
   mergeConfigurations,
   startServer,
   // private methods
