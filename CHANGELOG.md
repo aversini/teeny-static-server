@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/aversini/teeny-static-server/compare/v1.0.1...v1.1.0) (2021-01-30)
+
+
+### Features
+
+* migrating to teeny-logger for logging consistency ([ff8ffc4](https://github.com/aversini/teeny-static-server/commit/ff8ffc40f0d67b2184b40e4fac630212ffdb3689))
+
+
+
 ## [1.0.1](https://github.com/aversini/teeny-static-server/compare/v1.0.0...v1.0.1) (2021-01-29)
 
 
