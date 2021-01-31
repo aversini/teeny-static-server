@@ -1,12 +1,9 @@
 const {
+  deepEqual,
   displayErrorMessages,
-  logger,
-  mergeConfigurations,
-  printHTTPLogs,
-  upperFirst,
-} = require("../utilities");
-
-const deepEqual = require("./helpers/deepEqual");
+  shallowMerge,
+} = require("teeny-js-utilities");
+const { logger } = require("../utilities");
 
 let mockLog,
   mockLogError,
@@ -16,12 +13,6 @@ let mockLog,
   spyLogError,
   spyLogWarning,
   mockExit;
-
-describe("when testing for individual utilities wtih no logging side-effects", () => {
-  it("should convert the first letter of a sentence to uppercase", async () => {
-    expect(upperFirst("this is a test")).toBe("This is a test");
-  });
-});
 
 describe("when testing for configuration merging wtih no logging side-effects", () => {
   it("should perform a deep equality between 2 exact same objects", async () => {
@@ -135,7 +126,7 @@ describe("when testing for configuration merging wtih no logging side-effects", 
      * equality AFTER the merge is done... Only thing we can do is test
      * that the end result gets the right values.
      */
-    const res = mergeConfigurations(configA, configB);
+    const res = shallowMerge(configA, configB);
 
     // eslint-disable-next-line no-magic-numbers
     expect(res.port).toBe(8081);
@@ -196,21 +187,5 @@ describe("when testing for utilities with logging side-effects", () => {
     displayErrorMessages();
     expect(mockLog).not.toHaveBeenCalled();
     expect(mockExit).not.toHaveBeenCalled();
-  });
-
-  it("should display HTTP logs with date and time", async () => {
-    const spyDate = jest
-      .spyOn(Date.prototype, "toDateString")
-      .mockImplementation(() => "Sat Oct 31 2020");
-    const spyLocaleTime = jest
-      .spyOn(Date.prototype, "toLocaleTimeString")
-      .mockImplementation(() => "5:00:00 PM");
-
-    printHTTPLogs({ method: "GET", url: "/" });
-    expect(mockLog).toHaveBeenCalledWith(
-      "[ Sat Oct 31 2020 5:00:00 PM ] GET /"
-    );
-    spyDate.mockRestore();
-    spyLocaleTime.mockRestore();
   });
 });

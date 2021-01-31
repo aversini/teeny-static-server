@@ -1,4 +1,3 @@
-const _ = require("lodash");
 const compression = require("compression");
 const { promisify } = require("util");
 const handler = require("serve-handler");
@@ -6,46 +5,16 @@ const http = require("http");
 const portfinder = require("portfinder");
 const boxen = require("boxen");
 const open = require("open");
-const ora = require("ora");
-const { cyan, green, grey, yellow } = require("kleur");
+const { cyan, yellow } = require("kleur");
 const TeenyLogger = require("teeny-logger");
+const { printHTTPLogs, Spinner } = require("teeny-js-utilities");
+
 const logger = new TeenyLogger({
   boring: process.env.NODE_ENV === "test",
 });
 
 const ONE_SECOND = 1000;
 const FORCE_SERVER_CLOSE_DELAY = 3000;
-
-const upperFirst = (str) => str[0].toUpperCase() + str.slice(1);
-
-/**
- *
- * WARNING: this method is nasty! It will alter the original
- * objects... This needs to be fixed, but for now, it's what it is.
- *
- */
-const mergeConfigurations = (defaultConfig, customConfig) =>
-  _.merge(defaultConfig, customConfig);
-
-const displayErrorMessages = (errorMsg) => {
-  if (errorMsg && errorMsg.length) {
-    logger.log();
-    errorMsg.forEach(function (msg) {
-      logger.error(msg);
-    });
-    logger.log();
-    process.exit(0);
-  }
-};
-
-const printHTTPLogs = (req) => {
-  const now = new Date();
-  logger.log(
-    `${grey("[ ")}${grey(now.toDateString())} ${grey(
-      now.toLocaleTimeString()
-    )}${grey(" ]")} ${green(req.method)} ${cyan(req.url)}`
-  );
-};
 
 /* istanbul ignore next */
 const handleShutdown = (callback) => {
@@ -120,7 +89,7 @@ const startServer = async (config) => {
   server.listen(config.port, "0.0.0.0", async () => {
     handleShutdown(() => {
       logger.log();
-      const spinner = ora("Shutting down. Please wait...").start();
+      const spinner = new Spinner("Shutting down. Please wait...");
       setTimeout(() => {
         spinner.succeed("Server is down... Bye!");
         process.exit(0);
@@ -152,12 +121,7 @@ const startServer = async (config) => {
 
 module.exports = {
   // public methods
-  upperFirst,
-  displayErrorMessages,
   handleShutdown,
   logger,
-  mergeConfigurations,
   startServer,
-  // private methods
-  printHTTPLogs,
 };

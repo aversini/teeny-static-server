@@ -4,10 +4,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const commander = require("commander");
 const program = new commander.Command();
-const {
-  displayErrorMessages,
-  mergeConfigurations,
-} = require("../src/utilities");
+const { displayErrorMessages, shallowMerge } = require("teeny-js-utilities");
 const httpServer = require("../src/http-server");
 const defaults = require("../src/defaults");
 const pkg = require(path.join(__dirname, "../package.json"));
@@ -67,6 +64,6 @@ if (program.args.length) {
  * Merging default configuration with the
  * preferences shared by the user.
  */
-const config = mergeConfigurations(defaults, customCfg);
+const config = shallowMerge(defaults, customCfg);
 
 httpServer(config);
