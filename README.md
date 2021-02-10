@@ -1,8 +1,9 @@
 # Teeny Static Server
 
-[![npm version](https://badge.fury.io/js/teeny-static-server.svg)](https://badge.fury.io/js/teeny-static-server)
-<a href="https://david-dm.org/aversini/teeny-static-server"><img src="https://david-dm.org/aversini/teeny-static-server.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/aversini/teeny-static-server/?type=dev"><img src="https://david-dm.org/aversini/teeny-static-server/dev-status.svg" alt="devDependency Status"></a> ![Build Status](https://github.com/aversini/teeny-static-server/workflows/coverage/badge.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6ffcf051947a4e8e9d6155edec2a6e00)](https://app.codacy.com/gh/aversini/teeny-static-server?utm_source=github.com&utm_medium=referral&utm_content=aversini/teeny-static-server&utm_campaign=Badge_Grade)
+![npm](https://img.shields.io/npm/v/teeny-static-server?label=version&logo=npm)
+![David](https://img.shields.io/david/aversini/teeny-static-server?logo=npm)
+![David](https://img.shields.io/david/dev/aversini/teeny-static-server?logo=npm)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/aversini/teeny-static-server/coverage?label=coverage&logo=github)
 
 > Teeny Static Server is a simple, zero-configuration, command line HTTP server to serve static files locally.
 
