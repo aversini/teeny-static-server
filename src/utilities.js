@@ -104,9 +104,9 @@ const startServer = async (config) => {
     logger.log();
     logger.log(
       boxen(msg, {
-        padding: 1,
         align: "center",
         borderColor: "yellow",
+        padding: 1,
       })
     );
 
