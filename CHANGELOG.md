@@ -1,3 +1,12 @@
+# [2.0.0](https://github.com/aversini/teeny-static-server/compare/v1.1.0...v2.0.0) (2021-02-12)
+
+
+### Features
+
+* migrating from commander to meow ([231b6bb](https://github.com/aversini/teeny-static-server/commit/231b6bbb0a0e948ea6d2b2ac00c247d4b7126178))
+
+
+
 # [1.1.0](https://github.com/aversini/teeny-static-server/compare/v1.0.1...v1.1.0) (2021-01-30)
 
 
