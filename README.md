@@ -35,7 +35,7 @@ At that point, you should be able to visit `http://localhost:8080` and see the f
 | `-l` or `--logs`           | false   | Log HTTP requests at the prompt                             |
 | `-o` or `--open`           | false   | Open in your default browser                                |
 | `-p` or `--port <n>`       | 8080    | Port to listen on - Will try next available if already used |
-| `-u` or `--no-gzip`        | false   | Disable GZIP compression                                    |
+| `-g` or `--gzip`           | true    | Enable GZIP compression                                     |
 | `-v` or `--version`        |         | Output the current version                                  |
 
 ## Credits
