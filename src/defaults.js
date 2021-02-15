@@ -9,6 +9,6 @@ module.exports = {
   ],
   logs: false,
   open: false,
-  path: process.cwd(),
+  path: `${process.cwd()}/`,
   port: 8080,
 };

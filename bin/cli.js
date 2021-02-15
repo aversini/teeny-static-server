@@ -8,8 +8,8 @@ const {
   meowParserHelper,
   shallowMerge,
 } = require("teeny-js-utilities");
-const httpServer = require("../src/http-server");
 const defaults = require("../src/defaults");
+const { startServer } = require("../src/utilities");
 
 const DEFAULT_PORT = 8080;
 
@@ -78,7 +78,7 @@ const customCfg = cli.flags;
 if (cli.input.length) {
   const customPath = cli.input[0];
   if (fs.pathExistsSync(customPath)) {
-    customCfg.path = customPath;
+    customCfg.path = `${customPath}/`;
   } else {
     displayErrorMessages([`Folder ${customPath} does not exist!`]);
   }
@@ -90,4 +90,6 @@ if (cli.input.length) {
  */
 const config = shallowMerge(defaults, customCfg);
 
-httpServer(config);
+(async () => {
+  await startServer(config);
+})();

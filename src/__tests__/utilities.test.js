@@ -20,20 +20,20 @@ describe("when testing for configuration merging wtih no logging side-effects", 
       bump: {
         nextPossible: [
           {
-            type: "minor",
             default: true,
+            type: "minor",
           },
         ],
       },
       release: {
         prerelease: [
           {
-            name: "run tests",
             command: "npm run test",
+            name: "run tests",
           },
           {
-            name: "generate changelog",
             command: "npm run changelog",
+            name: "generate changelog",
           },
         ],
       },
@@ -46,20 +46,20 @@ describe("when testing for configuration merging wtih no logging side-effects", 
       bump: {
         nextPossible: [
           {
-            type: "minor",
             default: true,
+            type: "minor",
           },
         ],
       },
       release: {
         prerelease: [
           {
-            name: "run tests",
             command: "npm run test",
+            name: "run tests",
           },
           {
-            name: "generate changelog",
             command: "npm run changelog",
+            name: "generate changelog",
           },
         ],
       },
@@ -68,20 +68,20 @@ describe("when testing for configuration merging wtih no logging side-effects", 
       bump: {
         nextPossible: [
           {
-            type: "minor",
             default: false,
+            type: "minor",
           },
         ],
       },
       release: {
         prerelease: [
           {
-            name: "run tests",
             command: "npm run test",
+            name: "run tests",
           },
           {
-            name: "generate changelog",
             command: "npm run changelog",
+            name: "generate changelog",
           },
         ],
       },
@@ -94,8 +94,8 @@ describe("when testing for configuration merging wtih no logging side-effects", 
       bump: {
         nextPossible: [
           {
-            type: "minor",
             default: true,
+            type: "minor",
           },
         ],
       },
@@ -104,8 +104,8 @@ describe("when testing for configuration merging wtih no logging side-effects", 
       bump: {
         nextPossible: [
           {
-            type: "minor",
             default: false,
+            type: "minor",
           },
         ],
       },
@@ -117,8 +117,8 @@ describe("when testing for configuration merging wtih no logging side-effects", 
   it("should return a new configuration with custom nexPossible", async () => {
     const configA = require("../defaults");
     const configB = {
-      port: 8081,
       gzip: false,
+      port: 8081,
     };
     expect(deepEqual(configA, configB)).toBe(false);
     /**
@@ -135,7 +135,7 @@ describe("when testing for configuration merging wtih no logging side-effects", 
     expect(res.gzip).toBe(false);
     expect(res.logs).toBe(false);
     expect(res.open).toBe(false);
-    expect(res.path).toBe(process.cwd());
+    expect(res.path).toBe(`${process.cwd()}/`);
     expect(
       deepEqual(res.headers, [{ "X-Powered-By": "Teeny Static Server" }])
     ).toBe(true);
