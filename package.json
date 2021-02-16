@@ -58,7 +58,7 @@
     "open": "7.4.1",
     "portfinder": "1.0.28",
     "serve-handler": "6.1.3",
-    "teeny-js-utilities": "^2.0.1",
+    "teeny-js-utilities": "^3.0.0",
     "teeny-logger": "^0.2.0"
   }
 }
