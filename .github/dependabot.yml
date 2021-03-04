@@ -12,3 +12,5 @@ updates:
     ignore:
       - dependency-name: "husky"
         versions: ["5.x"]
+      - dependency-name: "open"
+        versions: ["8.x"]
